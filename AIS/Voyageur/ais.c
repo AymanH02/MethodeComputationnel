@@ -265,16 +265,19 @@ int main(int argc, char** argv)
  triPopulation(&p);
 
  tour=0;
-  #if 1
+
+#if 1
  {
  	Ac ac;
  	genereAc(&ac);
  	printAc(&ac);
- 	muteAc(&ac,1);
+  //muteAc(&ac,1);
+  muteAC_inversion(&ac,1);
  	printAc(&ac);
- 	exit(1);
+ 	//exit(1);
  }
  #endif
+
  while (tour!=nbGenerations)
  {
   tour++;
@@ -282,8 +285,11 @@ int main(int argc, char** argv)
   /* Par construction, en debut de boucle, la population est deja triee... */
 
   /* A completer ... */
-
-  // ...
+  clonageMeilleurs(&p);
+  mutationClones(&p);
+  selectionMeilleursEtClonesMutes(&p);
+  mutationMoinsBons(&p);
+  
 
   /* Fin a completer !! */
 

@@ -167,3 +167,34 @@ void muteAc(Ac *ac,int nbMutations)
 
  /* A completer ... */
 }
+void muteAC_inversion(Ac *ac,int nbMutations) {
+  (void)ac;
+  (void)nbMutations;
+  int indiceVille1 ,indiceVille2,i=0,temp;
+  for(i = 0 ; i < nbMutations; i++) {
+    indiceVille1 =  myRandomMinMax(0,ac->nbVilles-1);
+    indiceVille2 =  myRandomMinMax(0,ac->nbVilles-1);
+    while(indiceVille1 == indiceVille2) {
+        indiceVille2 =  myRandomMinMax(0,ac->nbVilles-1);
+    }
+  }
+  if(indiceVille1 > indiceVille2){
+      temp = indiceVille1;
+      indiceVille2 =  indiceVille2;
+      indiceVille1 = temp;
+  }
+  while(indiceVille1 < indiceVille2) {
+    temp = ac->parcours[indiceVille1]; 
+    ac->parcours[indiceVille1] =  ac->parcours[indiceVille2];
+    ac->parcours[indiceVille2] = temp;
+    indiceVille1++;
+    indiceVille2--;
+  }
+  calculCoutAc(ac);  
+}
+/*
+void muteAc_translation(Ac *ac ,int nbMutations)  {
+(void) ac;
+(void)nbMutations
+}
+*/

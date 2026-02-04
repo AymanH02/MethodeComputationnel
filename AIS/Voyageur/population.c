@@ -258,8 +258,12 @@ void mutationClones(Population *population)
  /* Dans un premier temps, le nombre de mutations peut etre fixe.  */
 
  (void)population;
-
+int i ;
  /* A completer ... */
+	for(i = 0 ; i < population->nbClones ;  i++ ) {
+		muteAc(population->clones[i],1);
+	}
+
 }
 
 void selectionMeilleursEtClonesMutes(Population *population)
@@ -272,8 +276,18 @@ void selectionMeilleursEtClonesMutes(Population *population)
 /*** LES DEUX VERSIONS SONT A FAIRE ET DOIVENT ETRE COMPAREES        ***/
 
  (void)population;
-
+int i=0;
  /* A completer ... */
+Ac *temp;
+for(i = 0 ; i < population->nbClones ; i++){ 
+	if(population->clones[i]->cout < population->individus[population->nbIndividus - population->nbClones + i]->cout) {
+              temp = population->individus[population->nbIndividus - population->nbClones + i];
+              population->individus[population->nbIndividus - population->nbClones + i] = population->clones[i];
+              population->clones[i] = temp;
+
+
+       }
+}
 }
 
 /*** Les moins bons doivent etre a gauche (apres un tri par exemple) ***/
@@ -284,14 +298,20 @@ void mutationMoinsBons(Population *population)
  /* Dans un premier temps, le nombre de mutations peut etre fixe.  */
 
  (void)population;
-
+       int i;
  /* A completer ... */
+       for(i = 0 ; i < population->nbIndividus - population->nbClones  ;i++) {
+              muteAc(population->individus[i] ,1);
+       }
 }
 
 /*** Les moins bons doivent etre a gauche (apres un tri par exemple) ***/
 void remplacementMauvaisParNouveaux(Population *population, int nbNouveaux)
 {
  (void)population; (void)nbNouveaux;
-
+ int i ; 
  /* A completer ... */
+ for(i = 0 ; i < nbNouveaux ; i++) {
+       genereAc(population->individus[i]);
+ }
 }
