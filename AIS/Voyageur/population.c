@@ -289,7 +289,19 @@ for(i = 0 ; i < population->nbClones ; i++){
        }
 }
 }
-
+void selectionMeilleursEtClonesMutes_tri(Population *population)
+{
+(void)population;
+triSousPopulation(population,population->nbIndividus-population->nbClones ,2*population->nbClones);
+int i=0;
+ /* A completer ... */
+Ac *temp;
+for(i = 0 ; i < population->nbClones ; i++){ 
+              temp = population->individus[population->nbIndividus - population->nbClones + i];
+              population->individus[population->nbIndividus - population->nbClones + i] = population->clones[i];
+              population->clones[i] = temp;
+}
+}
 /*** Les moins bons doivent etre a gauche (apres un tri par exemple) ***/
 void mutationMoinsBons(Population *population)
 {
